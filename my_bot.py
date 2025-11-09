@@ -1,4 +1,4 @@
-#!/home/aditya/my-cli-tools/termibot/venv/bin/python
+#!/usr/bin/env python3
 
 
 import google.generativeai as genai
