@@ -1,0 +1,11 @@
+# Virtual Environment
+venv/
+
+# Python cache
+__pycache__/
+
+# History file (IMPORTANT!)
+*.json
+
+# Env files (Good practice)
+.env
