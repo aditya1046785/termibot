@@ -11,6 +11,9 @@ from pathlib import Path
 # History file ka path set karte hain (e.g., /home/aditya/.termibot_history.json)
 HISTORY_FILE = Path.home() / ".termibot_history.json"
 MAX_HISTORY_LENGTH = 10 # Kitni purani baatein yaad rakhni hain (User + Bot messages)
+current_os = "linux"
+if sys.platform.startswith('win'):
+    current_os = "windows"
 
 # --- Step A: API KEY CONFIGURATION ---
 # --- Step A: API KEY CONFIGURATION ---
@@ -58,7 +61,7 @@ def get_response_from_gemini(user_query, history):
     
     # Ye hai humara naya, smarter prompt!
     engineered_prompt = f"""
-    You are a Linux Mint Terminal assistant named TermiBot.
+    You are a  {current_os} Terminal assistant named TermiBot.
     Your user needs direct, practical, and concise answers formatted for a terminal.
     - If the user asks for a command, provide the most common form of the command.
     - Briefly explain its main purpose.
