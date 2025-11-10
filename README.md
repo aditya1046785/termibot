@@ -1,51 +1,77 @@
-# 🤖 TermiBot - The Intelligent Command Line Assistant
+# 🤖 TermiBot - The Cross-Platform CLI Co-Pilot
 
-TermiBot is a fast, memory-enabled, terminal-based assistant that uses the Gemini API to provide concise, practical Linux commands and explanations, just like a helpful co-pilot.
+TermiBot is a fast, memory-enabled, terminal-based assistant that uses the Gemini API. It is designed to provide concise, practical command-line answers for **Linux, macOS, and Windows** environments, acting as your smart co-pilot.
 
 ---
 
 ## ✨ Features
 
-* **Intelligent Terminal Answers:** Provides direct command-line answers (no verbose chat).
-* **Memory Enabled:** Remembers the last 5 questions for context (using `.termibot_history.json`).
+* **Intelligent Terminal Answers:** Provides direct, concise command-line output.
+* **Dynamic OS Awareness:** Automatically detects the user's operating system (using Python's `sys.platform`) and provides **specific commands** for Linux, macOS, or Windows (CMD/PowerShell).
+* **Memory Enabled:** Remembers the last 10 messages for contextual conversations (history saved in `~/.termibot_history.json`).
 * **Dual Mode:** Works in one-shot mode (`bot "query"`) and interactive chat mode.
-* **Clean Setup:** Uses Python Virtual Environments for zero system clutter.
+* **Clean Setup:** Uses Python Virtual Environments (`venv`) for zero system clutter.
 
 ---
 
-## 🛠️ Installation (The Quick Way - Recommended)
-
-This method sets up TermiBot so you can run it from anywhere in your terminal using just the command `bot`.
+## 🛠️ Installation & Setup
 
 ### Prerequisites
 
 1.  **Python 3** (3.8+) installed on your system.
 2.  A **Gemini API Key**. Get one from [Google AI Studio].
 
-### Step-by-Step Setup
+### Step-by-Step Setup (Universal)
 
 1.  **Clone the Repository:**
     ```bash
-    git clone https://github.com/aditya1046785/termibot.git
+    git clone [https://github.com/aditya1046785/termibot.git](https://github.com/aditya1046785/termibot.git)
     cd termibot
     ```
 
 2.  **Create and Activate Virtual Environment (venv):**
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate
-    ```
+
+    * **Linux/macOS:**
+        ```bash
+        python3 -m venv venv
+        source venv/bin/activate
+        ```
+    * **Windows (CMD/PowerShell):**
+        ```bash
+        python -m venv venv
+        .\venv\Scripts\activate
+        ```
 
 3.  **Install Dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
 
-4.  **Create the `bot` Command Shortcut (Crucial Step!):**
-    This step creates the executable link to your script in your local command path (`~/.local/bin/`).
+4.  **Set Your API Key (CRITICAL):**
+    You **must** set your Gemini API key as an environment variable (`GEMINI_API_KEY`).
+
+    * **Linux/macOS (.bashrc/.zshrc):**
+        ```bash
+        export GEMINI_API_KEY="YOUR_API_KEY_HERE"
+        source ~/.bashrc  # or source ~/.zshrc
+        ```
+    * **Windows (Permanent Variable):**
+        Set the environment variable `GEMINI_API_KEY` through the **System Properties** GUI.
+
+---
+
+## 🚀 How to Use TermiBot
+
+The method you use to run TermiBot depends on your operating system.
+
+### 🐧 macOS / Linux (The `bot` Shortcut Method - Recommended)
+
+This sets up a simple `bot` command that runs from any directory.
+
+1.  **Create the `bot` Command Shortcut:**
+    This command links your script to your command path (`~/.local/bin/`).
 
     ```bash
-    # Ensure you are inside the 'termibot' directory
     # 1. Create the link:
     ln -s "$(pwd)/my_bot.py" ~/.local/bin/bot
     
@@ -56,28 +82,36 @@ This method sets up TermiBot so you can run it from anywhere in your terminal us
     deactivate
     ```
 
-5.  **Set Your API Key (Security First!):**
-    To use the bot, you **must** set your API key as an environment variable in your shell configuration file (`~/.bashrc`, `~/.zshrc`, etc.).
-
-    *Add this line to the end of the file:*
-    ```bash
-    export GEMINI_API_KEY="YOUR_API_KEY_HERE"
-    ```
-    *Apply the changes:*
-    ```bash
-    source ~/.bashrc  # or source ~/.zshrc
-    ```
+2.  **Run the Bot:**
+    * **One-Shot:** `bot "command to list disk space"`
+    * **Interactive:** `bot`
 
 ---
 
-## 🚀 How to Use TermiBot
+### 🪟 Windows (Using the `termibot.bat` File)
 
-Once set up, you can run `bot` from any directory.
+For Windows users, use the provided `termibot.bat` file which automatically handles venv activation and script execution.
 
-### 1. One-Shot Command Mode
+1.  **Run the Bot (from the project directory):**
+    * **One-Shot:**
+        ```bash
+        termibot "windows command to list services"
+        ```
+        *(The bot will automatically provide Windows-specific output)*
+    * **Interactive:**
+        ```bash
+        termibot
+        ```
 
-For quick answers:
+### 💡 Manual Method (All Platforms)
+
+If you skip the shortcut, you can always run the script manually:
 
 ```bash
-bot "how to search for the word error in all log files"
-# Output: grep -r 'error' *.log
+# First, activate the environment:
+ (Linux/Mac: source venv/bin/activate)
+ |
+ (Windows: .\venv\Scripts\activate)
+
+# Then run the script:
+python my_bot.py "your query here"
