@@ -26,7 +26,7 @@ TermiBot is a fast, memory-enabled, terminal-based assistant powered by the **Ge
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/aditya1046785/termibot.git]
+    git clone https://github.com/aditya1046785/termibot.git
     cd termibot
     ```
 
